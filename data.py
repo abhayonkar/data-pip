@@ -1,28 +1,31 @@
 import requests as req
 
 from pymongo import MongoClient
+import json
 
-resp=req.get('https://soccer.sportmonks.com/api/v2.0/teams/')
-product_data=resp.json()
+resp = req.get('https://data.nasa.gov/resource/y77d-th95.json')
+product_data = resp.json()
 
-products = product_data['products']
+print(product_data)
 
-groceries = []
+# products = product_data['products']
 
-for product in products:
-    if product['category'] == 'groceries':
-        groceries.append(product)
+# groceries = []
 
-try:
-    client=MongoClient('mongodb://localhost:27017/')
-    print("MongoDB Connection Successfully!")
-    db=client['pymo1']
-    col=db['product']
-    col.insert_many(groceries)
-    print("Data Inserted Successfully!")
-except:
-    print("Buddy Check -code one more time!")
-finally:
-    col=None
-    db=None
-    client=None
+# for product in products:
+#     if product['category'] == 'groceries':
+#         groceries.append(product)
+
+# try:
+#     client=MongoClient('mongodb://localhost:27017/')
+#     print("MongoDB Connection Successfully!")
+#     db=client['pymo1']
+#     col=db['product']
+#     col.insert_many(groceries)
+#     print("Data Inserted Successfully!")
+# except:
+#     print("Buddy Check -code one more time!")
+# finally:
+#     col=None
+#     db=None
+#     client=None
